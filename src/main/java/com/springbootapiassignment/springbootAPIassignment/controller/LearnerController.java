@@ -34,7 +34,6 @@ public class LearnerController {
     }
 
     @PostMapping("/addPlayer")
-
     public Learners addLearners(@RequestBody Learners p)
     {
         //p.setId(2);
@@ -58,6 +57,18 @@ public class LearnerController {
         System.out.println(playerProfile);
         return service.assignCourse(id,playerProfile);
     }
+
+    @GetMapping("/count")
+    public int countLearners(){
+        return service.countNumberOfLerner();
+    }
+    @GetMapping("/idExistInsideLearner/{id}")
+    public boolean idExistInsideLearner(@PathVariable int id)
+    {
+        return service.whetherIdExistInLearner(id);
+    }
+
+
     /* what we are basically doing is simply assign the object details in another object like her in this case we are putting the PlayerProfile object in Player Object
     public Player assignProfile(int id, PlayerProfile profile)
     {

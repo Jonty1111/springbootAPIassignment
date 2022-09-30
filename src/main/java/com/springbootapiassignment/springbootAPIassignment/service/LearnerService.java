@@ -13,14 +13,14 @@ import java.util.Optional;
 public class LearnerService {
 
     @Autowired
-    LearnersRespository playerRepository;
+    LearnersRespository learnersRepository;
 
     //getAllPlayers
     public List<Learners> getAllLearners(){
-        return playerRepository.findAll();
+        return learnersRepository.findAll();
     }
     public Learners findLearnerById(int id) {
-        Optional<Learners> optional = playerRepository.findById(id);
+        Optional<Learners> optional = learnersRepository.findById(id);
         if (optional.isEmpty()) {
             throw new RuntimeException("Player not found...");
         }
@@ -31,22 +31,36 @@ public class LearnerService {
         if (player == null) {
             throw new RuntimeException("Player is null...");
         }
-        return playerRepository.save(player);
+        return learnersRepository.save(player);
     }
 
     public void deleteLearnerById(int id) {
-        Optional<Learners> optional = playerRepository.findById(id);
+        Optional<Learners> optional = learnersRepository.findById(id);
         if (optional.isEmpty()) {
             throw new RuntimeException("Player not found...");
         }
-        playerRepository.delete(optional.get());
+        learnersRepository.delete(optional.get());
     }
 
 
     public Learners assignCourse(int id, Courses profile)
     {
-        Learners player=playerRepository.findById(id).get();
+        Learners player=learnersRepository.findById(id).get();
         //player.setCourse_id(profile);
-        return playerRepository.save(player);
+        return learnersRepository.save(player);
     }
+
+    public int countNumberOfLerner(){
+        return (int) learnersRepository.findAll().stream().count();
+    }
+
+    public boolean whetherIdExistInLearner(int id)
+    {
+        boolean exists = learnersRepository.existsById(id);
+        return exists;
+
+    }
+
+
+
 }

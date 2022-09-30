@@ -12,14 +12,14 @@ import java.util.Optional;
 public class CourseService {
 
     @Autowired
-    private CoursesRepository profileRepository;
+    private CoursesRepository coursesRepository;
     public List<Courses> findAllCourses() {
-        return profileRepository.findAll();
+        return coursesRepository.findAll();
     }
 
     public Courses findCoursesById(int id)
     {
-        Optional<Courses> optional = profileRepository.findById(id);
+        Optional<Courses> optional = coursesRepository.findById(id);
         if (optional.isEmpty()) {
             throw new RuntimeException("Player not found...");
         }
@@ -30,14 +30,14 @@ public class CourseService {
         if (profile == null) {
             throw new RuntimeException("Player is null...");
         }
-        return profileRepository.save(profile);
+        return coursesRepository.save(profile);
     }
 
     public void deleteCoursesById(int id) {
-        Optional<Courses> optional = profileRepository.findById(id);
+        Optional<Courses> optional = coursesRepository.findById(id);
         if (optional.isEmpty()) {
             throw new RuntimeException("Player not found...");
         }
-        profileRepository.delete(optional.get());
+        coursesRepository.delete(optional.get());
     }
 }
