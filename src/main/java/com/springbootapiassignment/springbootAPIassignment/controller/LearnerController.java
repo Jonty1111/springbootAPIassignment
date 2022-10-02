@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/jonty1")
@@ -77,6 +78,30 @@ public class LearnerController {
         return playerRepository.save(player);
     }
      */
+
+
+    // -------------------------------- Queries Based Rest API --------------------------------------
+    @PostMapping(value = "/findByEmailAndLastName")
+    public List<Learners> findByEmailAndLastName(@RequestBody Map<String,String> response){
+        //response.get("email").toString(),response.get("last_name").toString()
+        return service.findByEmailAddressAndLastname(response.get("email").toString(),response.get("last_name").toString());
+    }
+
+    @PostMapping(value = "/findDistinctLeanerByLastnameOrFirstname")
+    public List<Learners> findDistinctLeanerByLastnameOrFirstname(@RequestBody Map<String,String> response){
+        //response.get("email").toString(),response.get("last_name").toString()
+        return service.findDistinctLeanerByLastnameOrFirstname(response.get("first_name").toString(),response.get("last_name").toString());
+    }
+    @PostMapping(value = "/findByLastnameIgnoreCase")
+    public List<Learners> findByLastnameIgnoreCase(@RequestBody Map<String,String> response){
+        //response.get("email").toString(),response.get("last_name").toString()
+        return service.findByLastnameIgnoreCase(response.get("last_name").toString());
+    }
+    @PostMapping(value = "/findByLastnameOrderByFirstnameAsc")
+    public List<Learners> findByLastnameOrderByFirstnameAsc(@RequestBody Map<String,String> response){
+        //response.get("email").toString(),response.get("last_name").toString()
+        return service.findByLastnameOrderByFirstnameAsc(response.get("last_name").toString());
+    }
 
 
 }

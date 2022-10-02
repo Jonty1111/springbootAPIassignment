@@ -6,6 +6,7 @@ import com.springbootapiassignment.springbootAPIassignment.repository.LearnersRe
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +15,7 @@ public class LearnerService {
 
     @Autowired
     LearnersRespository learnersRepository;
+
 
     //getAllPlayers
     public List<Learners> getAllLearners(){
@@ -54,6 +56,7 @@ public class LearnerService {
         return (int) learnersRepository.findAll().stream().count();
     }
 
+
     public boolean whetherIdExistInLearner(int id)
     {
         boolean exists = learnersRepository.existsById(id);
@@ -61,6 +64,26 @@ public class LearnerService {
 
     }
 
+    /*******QUERIES********/
+    @Transactional
+    public List<Learners> findByEmailAddressAndLastname(String email, String last_name){
+        return learnersRepository.findByEmailAddressAndLastname(email,last_name);
+    }
+
+    @Transactional
+    public List<Learners> findDistinctLeanerByLastnameOrFirstname(String first_name, String last_name){
+        return learnersRepository.findDistinctLeanerByLastnameOrFirstname(first_name,last_name);
+    }
+
+    @Transactional
+    public List<Learners> findByLastnameIgnoreCase(String last_name){
+        return learnersRepository.findByLastnameIgnoreCase(last_name);
+    }
+
+    @Transactional
+    public List<Learners> findByLastnameOrderByFirstnameAsc(String last_name){
+        return learnersRepository.findByLastnameOrderByFirstnameAsc(last_name);
+    }
 
 
 }
