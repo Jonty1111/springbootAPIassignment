@@ -26,3 +26,6 @@ Learner Table
 Course Table
 ->Primary Key->course_id
 **************************
+
+
+[https://stackoverflow.com/questions/20603638/what-is-the-use-of-annotations-id-and-generatedvaluestrategy-generationtype]](https://stackoverflow.com/questions/20603638/what-is-the-use-of-annotations-id-and-generatedvaluestrategy-generationtype]

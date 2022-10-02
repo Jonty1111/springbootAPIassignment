@@ -54,6 +54,7 @@ public class LearnerService {
         return (int) learnersRepository.findAll().stream().count();
     }
 
+
     public boolean whetherIdExistInLearner(int id)
     {
         boolean exists = learnersRepository.existsById(id);
